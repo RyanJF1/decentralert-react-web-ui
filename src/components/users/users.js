@@ -1,20 +1,20 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Breadcrumb from '../common/breadcrumb';
-import {Button, Table} from "reactstrap";
 import axios from "axios";
+import {Button, Table} from "reactstrap";
 
-const Notifications = () => {
-    const [notifications, setNotifications] = useState([]);
+const Users = () => {
+    const [users, setUsers] = useState([]);
 
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL + "/notifications?email=ryan.j.fulton@gmail.com", {
+        axios.get(process.env.REACT_APP_API_URL + "/user", {
             headers: {
                 'X-API-KEY': process.env.REACT_APP_API_KEY
             }
         })  .then(function(response) {
             console.log(response.data);
-            setNotifications(response.data);
+            setUsers(response.data);
         })
             .catch(err => {
                 console.log(err);
@@ -32,20 +32,20 @@ const Notifications = () => {
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nickname</th>
-                        <th>Address</th>
-                        <th>Notify</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {notifications.map((notification, i) => {
+                    {users.map((user, i) => {
                         return  <tr>
-                            <td key={i}>{notification.id}</td>
-                            <td>{notification.nickname}</td>
-                            <td>{notification.address_id}</td>
-                            <td>{notification.notify.toString()}</td>
-                            <td> <Button variant="primary">s</Button>
+                            <td key={i}>{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>
+                                <Button variant="secondary">Edit</Button>
+                                <Button variant="danger">Delete</Button>
                             </td>
 
                         </tr>
@@ -57,8 +57,10 @@ const Notifications = () => {
 
 
         </Fragment>
+
+
     );
 };
 
 
-export default Notifications;
+export default Users;

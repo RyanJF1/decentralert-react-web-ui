@@ -11,19 +11,15 @@ import store from './store';
 import App from "./components/app";
 
 // Import custom Components 
-import Default from './components/dashboard/defaultCompo/default';
-import Ecommerce from './components/dashboard/ecommerce';
-import University from './components/dashboard/university';
-import Server from './components/dashboard/server/serverComponent';
-// import ServerComponent from './components/dashboard/server/server-component';
-import Project from './components/dashboard/project/project';
 
-import SupportTicket from './components/support-ticket/supportTicket';
+// import ServerComponent from './components/dashboard/server/server-component';
+
 
 //config data
 import configDB from './data/customizer/config'
 import Notifications from "./components/notifications/notifications";
 import Addresses from "./components/addresses/addresses";
+import Users from "./components/users/users";
 
 const Root = () => {
 
@@ -47,19 +43,11 @@ const Root = () => {
                 <BrowserRouter basename={`/`}>
                         <Switch>
                                 <App>
-                                    {/* dashboard menu */}
-                                    <Route exact path={`${process.env.PUBLIC_URL}/`} render={() => {
-                                        return (<Redirect to={`${process.env.PUBLIC_URL}/dashboard/default`} />)
-                                    }} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/default`} component={Default} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/ecommerce`} component={Ecommerce} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/university`} component={University} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/server`} component={Server} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/project`} component={Project} />
 
                                     {/* Support Ticket */}
                                     <Route path={`${process.env.PUBLIC_URL}/addresses/addresses`} component={Addresses} />
                                     <Route path={`${process.env.PUBLIC_URL}/notifications/notifications`} component={Notifications} />
+                                    <Route path={`${process.env.PUBLIC_URL}/users/users`} component={Users} />
                                 </App>
                         </Switch>
                 </BrowserRouter>

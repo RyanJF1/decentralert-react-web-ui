@@ -43,7 +43,7 @@ const Addresses = () => {
                             <td key={i}>{address.id}</td>
                             <td>{address.nickname}</td>
                             <td>{address.address_id}</td>
-                            <td> <Button variant="primary">Get Transfers</Button>
+                            <td>
                                 <Button variant="secondary">Edit</Button>
                                 <Button variant="danger">Delete</Button>
                             </td>
