@@ -26,7 +26,7 @@ const Users = () => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Default" />
+            <Breadcrumb parent="Dashboard" title="Users" />
             <div className="container-fluid">
                 <Table striped bordered hover>
                     <thead>

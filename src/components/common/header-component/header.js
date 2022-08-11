@@ -1,6 +1,5 @@
 import React, { useState ,Fragment } from 'react';
 import logo from '../../../assets/images/endless-logo.png';
-import Language from './language';
 import UserMenu from './userMenu';
 import Notification from './notification';
 import SearchHeader from './searchHeader';
@@ -81,14 +80,7 @@ const Header = () => {
               <li>
                 <SearchHeader />
               </li>
-              <li>
-                <a onClick={goFull} className="text-dark" href="#!">
-                  <Maximize />
-                </a>
-              </li>
-              <li className="onhover-dropdown">
-                <Language />
-              </li>
+
               <li className="onhover-dropdown">
                 <Notification />
                 <Bell />

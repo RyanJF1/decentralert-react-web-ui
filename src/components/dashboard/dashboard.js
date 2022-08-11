@@ -1,20 +1,20 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Breadcrumb from '../common/breadcrumb';
-import {Button, Table} from "reactstrap";
 import axios from "axios";
+import {Button, Table} from "reactstrap";
 
-const Notifications = () => {
-    const [notifications, setNotifications] = useState([]);
+const Dashboard = () => {
+    const [addresses, setAddresses] = useState([]);
 
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL + "/notifications?email=ryan.j.fulton@gmail.com", {
+        axios.get(process.env.REACT_APP_API_URL + "/address", {
             headers: {
                 'X-API-KEY': process.env.REACT_APP_API_KEY
             }
         })  .then(function(response) {
             console.log(response.data);
-            setNotifications(response.data);
+            setAddresses(response.data);
         })
             .catch(err => {
                 console.log(err);
@@ -26,7 +26,7 @@ const Notifications = () => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Notifications" />
+            <Breadcrumb parent="Dashboard" title="Dashboard" />
             <div className="container-fluid">
                 <Table striped bordered hover>
                     <thead>
@@ -34,20 +34,18 @@ const Notifications = () => {
                         <th>#</th>
                         <th>Nickname</th>
                         <th>Address</th>
-                        <th>Notify</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {notifications.map((notification, i) => {
+                    {addresses.map((address, i) => {
                         return  <tr>
-                            <td key={i}>{notification.id}</td>
-                            <td>{notification.nickname}</td>
-                            <td>{notification.address_id}</td>
-                            <td>{notification.notify.toString()}</td>
+                            <td key={i}>{address.id}</td>
+                            <td>{address.nickname}</td>
+                            <td>{address.address_id}</td>
                             <td>
-                                <Button variant="primary">Edit</Button>
-                                <Button variant="primary">Delete</Button>
+                                <Button variant="secondary">Edit</Button>
+                                <Button variant="danger">Delete</Button>
                             </td>
 
                         </tr>
@@ -59,8 +57,10 @@ const Notifications = () => {
 
 
         </Fragment>
+
+
     );
 };
 
 
-export default Notifications;
+export default Dashboard;
