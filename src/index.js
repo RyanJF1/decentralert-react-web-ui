@@ -22,6 +22,8 @@ import SupportTicket from './components/support-ticket/supportTicket';
 
 //config data
 import configDB from './data/customizer/config'
+import Notifications from "./components/notifications/notifications";
+import Addresses from "./components/addresses/addresses";
 
 const Root = () => {
 
@@ -56,7 +58,8 @@ const Root = () => {
                                     <Route path={`${process.env.PUBLIC_URL}/dashboard/project`} component={Project} />
 
                                     {/* Support Ticket */}
-                                    <Route path={`${process.env.PUBLIC_URL}/support-ticket/supportTicket`} component={SupportTicket} />
+                                    <Route path={`${process.env.PUBLIC_URL}/addresses/addresses`} component={Addresses} />
+                                    <Route path={`${process.env.PUBLIC_URL}/notifications/notifications`} component={Notifications} />
                                 </App>
                         </Switch>
                 </BrowserRouter>

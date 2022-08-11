@@ -1,8 +1,8 @@
 import {
-    Anchor,
+    Anchor, Bell,
     Headphones,
     Home,
-    
+
 } from 'react-feather';
 
 export const MENUITEMS = [
@@ -16,7 +16,10 @@ export const MENUITEMS = [
         ]
     },
     {
-        title: 'Support Ticket', icon: Anchor, type: 'link', path: '/support-ticket/supportTicket', active: false
+        title: 'Addresses', icon: Anchor, type: 'link', path: '/addresses/addresses', active: false
+    },
+    {
+        title: 'Notifications', icon: Bell, type: 'link', path: '/notifications/notifications', active: false
     },
     {
         path: 'http://support.pixelstrap.com/help-center',
