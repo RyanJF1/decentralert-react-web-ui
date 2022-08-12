@@ -28,31 +28,7 @@ const Dashboard = () => {
         <Fragment>
             <Breadcrumb parent="Dashboard" title="Dashboard" />
             <div className="container-fluid">
-                <Table striped bordered hover>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nickname</th>
-                        <th>Address</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {addresses.map((address, i) => {
-                        return  <tr>
-                            <td key={i}>{address.id}</td>
-                            <td>{address.nickname}</td>
-                            <td>{address.address_id}</td>
-                            <td>
-                                <Button variant="secondary">Edit</Button>
-                                <Button variant="danger">Delete</Button>
-                            </td>
 
-                        </tr>
-                    })
-                    }
-                    </tbody>
-                </Table>
             </div>
 
 

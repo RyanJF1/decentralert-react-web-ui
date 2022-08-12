@@ -1,11 +1,16 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Breadcrumb from '../common/breadcrumb';
 import axios from "axios";
-import {Button, Table} from "reactstrap";
+import {Button, Input, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "reactstrap";
 
 const Addresses = () => {
     const [addresses, setAddresses] = useState([]);
+    const [modal, setModal] = useState(false);
+    const [nickname, setNickname] = useState('');
+    const [address, setAddress] = useState('');
 
+
+    const toggle = () => setModal(!modal);
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + "/address", {
@@ -21,12 +26,50 @@ const Addresses = () => {
             });
     }, []);
 
+    const deleteAddress = (address) => {
+        axios.delete(process.env.REACT_APP_API_URL + "/address/" + address, {
+            headers: {
+                'X-API-KEY': process.env.REACT_APP_API_KEY
+            }
+        })
+    }
 
+    const addAddress = (nickname, address) => {
+        axios.post(process.env.REACT_APP_API_URL + "/address", {
 
+            nickname: nickname,
+            address_id: address
+        },{
+            headers: {
+            'X-API-KEY': process.env.REACT_APP_API_KEY
+        }})
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const handleAddressChange = event => {
+        setAddress(event.target.value);
+
+        console.log('value is:', event.target.value);
+    };
+
+    const handleNicknameChange = event => {
+        setNickname(event.target.value);
+
+        console.log('value is:', event.target.value);
+    };
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Dashboard" />
+            <Breadcrumb parent="Dashboard" title="Addresses" />
+
+            <Button color="danger" onClick={toggle}>
+                Add
+            </Button>
             <div className="container-fluid">
                 <Table striped bordered hover>
                     <thead>
@@ -44,8 +87,7 @@ const Addresses = () => {
                             <td>{address.nickname}</td>
                             <td>{address.address_id}</td>
                             <td>
-                                <Button variant="secondary">Edit</Button>
-                                <Button variant="danger">Delete</Button>
+                                <Button variant="danger" onClick={() => deleteAddress(address.address_id)}>Delete</Button>
                             </td>
 
                         </tr>
@@ -55,7 +97,32 @@ const Addresses = () => {
                 </Table>
             </div>
 
+            <div>
 
+                <Modal isOpen={modal} toggle={toggle} >
+                    <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                    <ModalBody>
+                        <div>
+                            <Input
+                                placeholder="Nickname"
+                                onChange={handleNicknameChange}
+                            />
+                            <Input
+                                placeholder="Address"
+                                onChange={handleAddressChange}
+                            />
+                        </div>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={() => {addAddress(nickname, address); toggle();}} >
+                            Add
+                        </Button>{' '}
+                        <Button color="secondary" onClick={toggle}>
+                            Cancel
+                        </Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
         </Fragment>
 
 
