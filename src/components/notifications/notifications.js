@@ -23,7 +23,7 @@ const Notifications = () => {
             .catch(err => {
                 console.log(err);
             });
-    }, []);
+    }, [notifications]);
 
     const deleteNotification = (id) => {
         axios.delete(process.env.REACT_APP_API_URL + "/notifications?notificationId=" + id, {

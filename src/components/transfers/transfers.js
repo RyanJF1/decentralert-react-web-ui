@@ -5,6 +5,7 @@ import {Button, Table} from "reactstrap";
 
 const Transfers = () => {
     const [addresses, setAddresses] = useState([]);
+    const [transfers, setTransfers] = useState([]);
 
 
     useEffect(() => {
@@ -19,7 +20,21 @@ const Transfers = () => {
             .catch(err => {
                 console.log(err);
             });
-    }, []);
+    }, [addresses]);
+
+    const getTransfers = (address) => {
+        axios.get(process.env.REACT_APP_API_URL + "/address/transfers?address=" + address,{
+            headers: {
+                'X-API-KEY': process.env.REACT_APP_API_KEY
+            }})
+            .then(function (response) {
+                console.log(response);
+                setTransfers(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
 
 
@@ -39,14 +54,42 @@ const Transfers = () => {
                     </thead>
                     <tbody>
                     {addresses.map((address, i) => {
-                        return  <tr>
-                            <td key={i}>{address.id}</td>
+                        return  <tr key={i}>
+                            <td >{address.id}</td>
                             <td>{address.nickname}</td>
                             <td>{address.address_id}</td>
                             <td>
-                                <Button variant="primary">Get Transfers</Button>
+                                <Button variant="primary" onClick={() => getTransfers(address.address_id)}>Get Transfers</Button>
                             </td>
 
+                        </tr>
+                    })
+                    }
+                    </tbody>
+                </Table>
+            </div>
+
+            <div className="container-fluid">
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Block #</th>
+                        <th>Hash</th>
+                        <th>To</th>
+                        <th>Value</th>
+                        <th>Asset</th>
+                        <th>Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {transfers.map((transfer, i) => {
+                        return  <tr key={i}>
+                            <td>{transfer.blockNum}</td>
+                            <td>{transfer.hash}</td>
+                            <td>{transfer.to}</td>
+                            <td>{transfer.value}</td>
+                            <td>{transfer.asset}</td>
+                            <td>{transfer.time}</td>
                         </tr>
                     })
                     }

@@ -1,8 +1,8 @@
 {
-  "name": "endless",
-  "version": "0.1.0",
+  "name": "Dcentralert",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://react.pixelstrap.com/endless/",
+  "homepage": "https://decentralert.io/",
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",
     "@fullcalendar/daygrid": "^5.10.1",
