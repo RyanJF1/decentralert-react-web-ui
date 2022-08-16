@@ -38,7 +38,7 @@ const Notifications = () => {
     }, []);
 
     const deleteNotification = (id) => {
-        axios.delete(process.env.REACT_APP_API_URL + "/notifications?notificationId=" + id, {
+        axios.delete(process.env.REACT_APP_API_URL + "/notifications/" + id, {
             headers: {
                 'X-API-KEY': process.env.REACT_APP_API_KEY
             }
@@ -95,7 +95,7 @@ const Notifications = () => {
                             <td>{notification.address_id}</td>
                             <td>{notification.notify.toString()}</td>
                             <td>
-                                <Button variant="primary" onClick={() => deleteNotification(notification.id)}>Delete</Button>
+                                <Button variant="primary" onClick={() => deleteNotification(notification.guid)}>Delete</Button>
                             </td>
 
                         </tr>
