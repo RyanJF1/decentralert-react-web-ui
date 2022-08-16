@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Breadcrumb from '../common/breadcrumb';
-import {Button, Input, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "reactstrap";
+import {Button, FormGroup, Input, Modal, ModalBody, ModalFooter, ModalHeader, Table} from "reactstrap";
 import axios from "axios";
 
 const Notifications = () => {
@@ -8,6 +8,7 @@ const Notifications = () => {
     const [modal, setModal] = useState(false);
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
+    const [addresses, setAddresses] = useState([]);
 
     const toggle = () => setModal(!modal);
 
@@ -23,7 +24,18 @@ const Notifications = () => {
             .catch(err => {
                 console.log(err);
             });
-    }, [notifications]);
+        axios.get(process.env.REACT_APP_API_URL + "/address", {
+            headers: {
+                'X-API-KEY': process.env.REACT_APP_API_KEY
+            }
+        })  .then(function(response) {
+            console.log(response.data);
+            setAddresses(response.data);
+        })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
 
     const deleteNotification = (id) => {
         axios.delete(process.env.REACT_APP_API_URL + "/notifications?notificationId=" + id, {
@@ -103,10 +115,15 @@ const Notifications = () => {
                                 placeholder="Email"
                                 onChange={handleEmailChange}
                             />
-                            <Input
-                                placeholder="Address"
-                                onChange={handleAddressChange}
-                            />
+                            <FormGroup>
+                                <Input type="select" name="select" id="exampleSelect" onChange={handleAddressChange}>
+                                    <option placeholder={"Address"}></option>
+                                    {addresses.map((address, i) => {
+                                       return  <option key={i} value={address.address_id}>{address.nickname}</option>
+                                    })
+                                    }
+                                </Input>
+                            </FormGroup>
                         </div>
                     </ModalBody>
                     <ModalFooter>

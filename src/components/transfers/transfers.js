@@ -20,7 +20,7 @@ const Transfers = () => {
             .catch(err => {
                 console.log(err);
             });
-    }, [addresses]);
+    }, []);
 
     const getTransfers = (address) => {
         axios.get(process.env.REACT_APP_API_URL + "/address/transfers?address=" + address,{

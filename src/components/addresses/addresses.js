@@ -24,7 +24,7 @@ const Addresses = () => {
             .catch(err => {
                 console.log(err);
             });
-    }, [addresses]);
+    }, []);
 
     const deleteAddress = (address) => {
         axios.delete(process.env.REACT_APP_API_URL + "/address/" + address, {

@@ -4,7 +4,7 @@ import UserMenu from './userMenu';
 import Notification from './notification';
 import SearchHeader from './searchHeader';
 import { Link } from 'react-router-dom';
-import { AlignLeft, Maximize, Bell, MessageCircle, MoreHorizontal } from 'react-feather';
+import { AlignLeft, Bell, MessageCircle, MoreHorizontal } from 'react-feather';
 
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -33,27 +33,27 @@ const Header = () => {
     }
   }
 
-  //full screen function
-  function goFull() {
-    if ((document.fullScreenElement && document.fullScreenElement !== null) ||
-      (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-      if (document.documentElement.requestFullScreen) {
-        document.documentElement.requestFullScreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullScreen) {
-        document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-      }
-    } else {
-      if (document.cancelFullScreen) {
-        document.cancelFullScreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen();
-      }
-    }
-  }
+  // //full screen function
+  // function goFull() {
+  //   if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+  //     (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+  //     if (document.documentElement.requestFullScreen) {
+  //       document.documentElement.requestFullScreen();
+  //     } else if (document.documentElement.mozRequestFullScreen) {
+  //       document.documentElement.mozRequestFullScreen();
+  //     } else if (document.documentElement.webkitRequestFullScreen) {
+  //       document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+  //     }
+  //   } else {
+  //     if (document.cancelFullScreen) {
+  //       document.cancelFullScreen();
+  //     } else if (document.mozCancelFullScreen) {
+  //       document.mozCancelFullScreen();
+  //     } else if (document.webkitCancelFullScreen) {
+  //       document.webkitCancelFullScreen();
+  //     }
+  //   }
+  // }
 
   return (
     <Fragment>
@@ -86,12 +86,6 @@ const Header = () => {
                 <Bell />
                 <span className="dot"></span>
                 <Notification />
-              </li>
-              <li>
-                <a href="#javascript" onClick={showRightSidebar}>
-                  <MessageCircle />
-                  <span className="dot"></span>
-                </a>
               </li>
               <UserMenu />
             </ul>
