@@ -44,6 +44,20 @@ const Notifications = () => {
             }
         })
     }
+
+    const disableNotification = (id) => {
+        axios.put(process.env.REACT_APP_API_URL + "/notifications/" + id + "/_disable", {},{
+            headers: {
+                'X-API-KEY': process.env.REACT_APP_API_KEY
+            }
+        }).then(function(response) {
+            console.log(response.data);
+        })
+            .catch(err => {
+                console.log(err);
+            });
+
+    }
     const handleEmailChange = event => {
         setEmail(event.target.value);
     };
@@ -95,6 +109,7 @@ const Notifications = () => {
                             <td>{notification.address_id}</td>
                             <td>{notification.notify.toString()}</td>
                             <td>
+                                <Button variant="primary" onClick={() => disableNotification(notification.guid)}>Toggle</Button>
                                 <Button variant="primary" onClick={() => deleteNotification(notification.guid)}>Delete</Button>
                             </td>
 
