@@ -50,7 +50,13 @@ const Notifications = () => {
             headers: {
                 'X-API-KEY': process.env.REACT_APP_API_KEY
             }
+        }).then(function(response) {
+            console.log(response.data);
         })
+            .catch(err => {
+                console.log(err);
+            });
+
     }
     const handleEmailChange = event => {
         setEmail(event.target.value);

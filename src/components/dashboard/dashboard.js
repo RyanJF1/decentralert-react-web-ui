@@ -1,11 +1,11 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Breadcrumb from '../common/breadcrumb';
 import axios from "axios";
-import {Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import {Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Table} from "reactstrap";
 
 const Dashboard = () => {
     const [dashboard, setDashboard] = useState([]);
-
+    const [history, setHistory] = useState([]);
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + "/ui/dashboard", {
@@ -19,6 +19,18 @@ const Dashboard = () => {
             .catch(err => {
                 console.log(err);
             });
+        axios.get(process.env.REACT_APP_API_URL + "/notifications/history?email=ryan.j.fulton@gmail.com", {
+            headers: {
+                'X-API-KEY': process.env.REACT_APP_API_KEY
+            }
+        }).then(function (response) {
+            console.log(response.data);
+            setHistory(response.data);
+        })
+            .catch(err => {
+                console.log(err);
+            });
+
     }, []);
 
 
@@ -46,7 +58,26 @@ const Dashboard = () => {
                 </Card>
             </div>
 
+            <div className="container-fluid">
 
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {history.map((history, i) => {
+                        return  <tr key={i}>
+                            <td>{history.addressId}</td>
+                            <td>{history.lastSent}</td>
+                        </tr>
+                    })
+                    }
+                    </tbody>
+                </Table>
+            </div>
         </Fragment>
 
 
