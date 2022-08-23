@@ -21,6 +21,7 @@ import Addresses from "./components/addresses/addresses";
 import Users from "./components/users/users";
 import Transfers from "./components/transfers/transfers";
 import Dashboard from "./components/dashboard/dashboard";
+import Login from "./components/login/login";
 
 const Root = () => {
 
@@ -46,12 +47,12 @@ const Root = () => {
                                 <App>
 
                                     {/* Support Ticket */}
-                                    <Route path={`${process.env.PUBLIC_URL}/addresses/addresses`} component={Addresses} />
-                                    <Route path={`${process.env.PUBLIC_URL}/notifications/notifications`} component={Notifications} />
-                                    <Route path={`${process.env.PUBLIC_URL}/users/users`} component={Users} />
-                                    <Route path={`${process.env.PUBLIC_URL}/transfers/transfers`} component={Transfers} />
-
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard/dashboard`} component={Dashboard} />
+                                    <Route path={`${process.env.PUBLIC_URL}/addresses`} component={Addresses} />
+                                    <Route path={`${process.env.PUBLIC_URL}/notifications`} component={Notifications} />
+                                    <Route path={`${process.env.PUBLIC_URL}/users`} component={Users} />
+                                    <Route path={`${process.env.PUBLIC_URL}/transfers`} component={Transfers} />
+                                    <Route path={`${process.env.PUBLIC_URL}/login`} component={Login} />
+                                    <Route path={`${process.env.PUBLIC_URL}/dashboard`} component={Dashboard} />
                                 </App>
                         </Switch>
                 </BrowserRouter>

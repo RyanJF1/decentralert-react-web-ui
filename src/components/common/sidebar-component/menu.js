@@ -8,18 +8,21 @@ import {
 export const MENUITEMS = [
 
     {
-        title: 'Dashboard', icon: Home, type: 'link', path: '/dashboard/dashboard', active: false
+        title: 'Login', icon: Home, type: 'link', path: '/login', active: false
     },
     {
-        title: 'Addresses', icon: Send, type: 'link', path: '/addresses/addresses', active: false
+        title: 'Dashboard', icon: Home, type: 'link', path: '/dashboard', active: false
     },
     {
-        title: 'Notifications', icon: Bell, type: 'link', path: '/notifications/notifications', active: false
+        title: 'Addresses', icon: Send, type: 'link', path: '/addresses', active: false
     },
     {
-        title: 'Users', icon: Users, type: 'link', path: '/users/users', active: false
+        title: 'Notifications', icon: Bell, type: 'link', path: '/notifications', active: false
     },
     {
-        title: 'Transfers', icon: Globe, type: 'link', path: '/transfers/transfers', active: false
+        title: 'Users', icon: Users, type: 'link', path: '/users', active: false
+    },
+    {
+        title: 'Transfers', icon: Globe, type: 'link', path: '/transfers', active: false
     },
 ]

@@ -13,12 +13,12 @@ const Notifications = () => {
     const toggle = () => setModal(!modal);
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL + "/notifications?email=ryan.j.fulton@gmail.com", {
+        axios.get(process.env.REACT_APP_API_URL + "/notifications", {
             headers: {
-                'X-API-KEY': process.env.REACT_APP_API_KEY
+                'X-API-KEY': process.env.REACT_APP_API_KEY,
+                'X-USER-TOKEN': localStorage.getItem("x-user-token")
             }
         })  .then(function(response) {
-            console.log(response.data);
             setNotifications(response.data);
         })
             .catch(err => {
@@ -29,7 +29,6 @@ const Notifications = () => {
                 'X-API-KEY': process.env.REACT_APP_API_KEY
             }
         })  .then(function(response) {
-            console.log(response.data);
             setAddresses(response.data);
         })
             .catch(err => {

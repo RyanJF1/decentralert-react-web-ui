@@ -40,20 +40,21 @@ const Dashboard = () => {
             <div className="container-fluid">
                 <Card>
                     <CardBody>
-                        <CardTitle>Address Count</CardTitle>
+                        <CardTitle>User Count</CardTitle>
                         <CardText>{dashboard.userCount}</CardText>
+                    </CardBody>
+                </Card>
+
+                <Card>
+                    <CardBody>
+                        <CardTitle>Address Count</CardTitle>
+                        <CardText>{dashboard.addressCount}</CardText>
                     </CardBody>
                 </Card>
                 <Card>
                     <CardBody>
                         <CardTitle>Notification Count</CardTitle>
                         <CardText>{dashboard.notificationCount}</CardText>
-                    </CardBody>
-                </Card>
-                <Card>
-                    <CardBody>
-                        <CardTitle>Address Count</CardTitle>
-                        <CardText>{dashboard.addressCount}</CardText>
                     </CardBody>
                 </Card>
             </div>
