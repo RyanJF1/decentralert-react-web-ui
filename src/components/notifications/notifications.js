@@ -65,14 +65,13 @@ const Notifications = () => {
         setAddress(event.target.value);
     };
 
-    const addNotification = (email, address) => {
+    const addNotification = (address) => {
         axios.post(process.env.REACT_APP_API_URL + "/notifications", {
-
-            email: email,
             address_id: address
         },{
             headers: {
-                'X-API-KEY': process.env.REACT_APP_API_KEY
+                'X-API-KEY': process.env.REACT_APP_API_KEY,
+                'X-USER-TOKEN': localStorage.getItem("x-user-token")
             }})
             .then(function (response) {
                 console.log(response);
@@ -122,13 +121,9 @@ const Notifications = () => {
             <div>
 
                 <Modal isOpen={modal} toggle={toggle} >
-                    <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                    <ModalHeader toggle={toggle}>Add Notification</ModalHeader>
                     <ModalBody>
                         <div>
-                            <Input
-                                placeholder="Email"
-                                onChange={handleEmailChange}
-                            />
                             <FormGroup>
                                 <Input type="select" name="select" id="exampleSelect" onChange={handleAddressChange}>
                                     <option placeholder={"Address"}></option>
@@ -141,7 +136,7 @@ const Notifications = () => {
                         </div>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={() =>{toggle(); addNotification(email, address)}}>
+                        <Button color="primary" onClick={() =>{toggle(); addNotification(address)}}>
                             Add
                         </Button>{' '}
                         <Button color="secondary" onClick={toggle}>

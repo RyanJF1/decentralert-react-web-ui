@@ -10,7 +10,8 @@ const Dashboard = () => {
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + "/ui/dashboard", {
             headers: {
-                'X-API-KEY': process.env.REACT_APP_API_KEY
+                'X-API-KEY': process.env.REACT_APP_API_KEY,
+                'X-USER-TOKEN': localStorage.getItem("x-user-token")
             }
         }).then(function (response) {
             console.log(response.data);
@@ -19,9 +20,10 @@ const Dashboard = () => {
             .catch(err => {
                 console.log(err);
             });
-        axios.get(process.env.REACT_APP_API_URL + "/notifications/history?email=ryan.j.fulton@gmail.com", {
+        axios.get(process.env.REACT_APP_API_URL + "/notifications/history", {
             headers: {
-                'X-API-KEY': process.env.REACT_APP_API_KEY
+                'X-API-KEY': process.env.REACT_APP_API_KEY,
+                'X-USER-TOKEN': localStorage.getItem("x-user-token")
             }
         }).then(function (response) {
             console.log(response.data);

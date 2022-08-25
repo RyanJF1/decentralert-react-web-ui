@@ -45,8 +45,6 @@ const Root = () => {
                 <BrowserRouter basename={`/`}>
                         <Switch>
                                 <App>
-
-                                    {/* Support Ticket */}
                                     <Route path={`${process.env.PUBLIC_URL}/addresses`} component={Addresses} />
                                     <Route path={`${process.env.PUBLIC_URL}/notifications`} component={Notifications} />
                                     <Route path={`${process.env.PUBLIC_URL}/users`} component={Users} />
