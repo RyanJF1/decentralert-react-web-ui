@@ -1,9 +1,17 @@
 import React, { Fragment } from 'react';
 import man from '../../../assets/images/dashboard/user.png';
 import { User, Mail, Lock, Settings, LogOut } from 'react-feather';
+import {useHistory} from "react-router-dom";
 
 
 const UserMenu = () => {
+    const history = useHistory();
+
+    const logout = () => {
+        localStorage.setItem("x-user-token", null);
+        console.log(localStorage.getItem("x-user-token"));
+        history.push("/login");
+    }
     return (
         <Fragment>
             <li className="onhover-dropdown">
@@ -19,7 +27,7 @@ const UserMenu = () => {
                     <li><a href="#javascript"><Mail />Inbox</a></li>
                     <li><a href="#javascript"><Lock />Lock Screen</a></li>
                     <li><a href="#javascript"><Settings />Settings</a></li>
-                    <li><a href="#javascript"><LogOut /> Log out</a></li>
+                    <li><a href="#javascript" onClick={() => logout()}><LogOut /> Log out</a></li>
                 </ul>
             </li>
         </Fragment>

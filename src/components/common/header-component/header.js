@@ -63,6 +63,7 @@ const Header = () => {
             <div className="logo-wrapper">
               <Link to={`${process.env.PUBLIC_URL}/dashboard/default`}>
                 <img className="img-fluid" src={logo} alt="" />
+                Decentralert
               </Link>
             </div>
           </div>

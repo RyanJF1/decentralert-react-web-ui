@@ -83,7 +83,7 @@ const Notifications = () => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Notifications" />
+            <Breadcrumb parent="Home" title="Notifications" />
             <Button color="danger" onClick={toggle}>
                 Add
             </Button>
@@ -92,7 +92,6 @@ const Notifications = () => {
                 <Table striped bordered hover>
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nickname</th>
                         <th>Address</th>
                         <th>Notify</th>
@@ -102,7 +101,6 @@ const Notifications = () => {
                     <tbody>
                     {notifications.map((notification, i) => {
                         return  <tr>
-                            <td key={i}>{notification.id}</td>
                             <td>{notification.nickname}</td>
                             <td>{notification.address_id}</td>
                             <td>{notification.notify.toString()}</td>

@@ -1,18 +1,14 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import Breadcrumb from '../common/breadcrumb';
 import axios from "axios";
 import {
     Button,
-    Card,
-    CardBody,
-    CardImg,
-    CardSubtitle,
-    CardText,
     Input,
     Modal,
     ModalBody, ModalFooter,
-    ModalHeader
+    ModalHeader, Spinner
 } from "reactstrap";
+import {useHistory} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -20,9 +16,10 @@ const Login = () => {
     const [modal, setModal] = useState(false);
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const toggle = () => setModal(!modal);
-
+    const history = useHistory();
     const handleUsernameChange = event => {
         setUsername(event.target.value);
     };
@@ -43,10 +40,13 @@ const Login = () => {
                 console.log(response);
                 localStorage.setItem("x-user-token", response.data);
                 console.log(localStorage.getItem("x-user-token"));
+                setSuccess(true);
+               history.push("/home");
             })
             .catch(function (error) {
                 console.log(error);
             });
+
     }
 
     const logout = () => {
@@ -108,12 +108,15 @@ const Login = () => {
                                 />
                             </div>
                             <button type="button" className="btn btn-secondary btn-block" onClick={() => login(username, password)}>LOGIN</button>
-                            <button type="button" className="btn btn-danger btn-block" onClick={() => logout()}>LOGOUT</button>
                             <Button color="primary" onClick={toggle}>
                                 Create account
                             </Button>
+
                         </form>
                     </div>
+                    {success && <Button onClick={() => setSuccess(true)}>Success<Spinner animation="border" role="status">
+                    </Spinner></Button>}
+
                 </div>
                 <div>
 

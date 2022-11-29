@@ -65,29 +65,27 @@ const Addresses = () => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Addresses" />
+            <Breadcrumb parent="Home" title="Addresses" />
 
             <Button color="danger" onClick={toggle}>
                 Add
             </Button>
             <div className="container-fluid">
-                <Table striped bordered hover>
+                <Table striped bordered hover size={"sm"}>
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nickname</th>
                         <th>Address</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-justify">
                     {addresses.map((address, i) => {
                         return  <tr>
-                            <td key={i}>{address.id}</td>
                             <td>{address.nickname}</td>
                             <td>{address.address_id}</td>
                             <td>
-                                <Button variant="danger" onClick={() => deleteAddress(address.address_id)}>Delete</Button>
+                                <Button size="sm" variant="danger" onClick={() => deleteAddress(address.address_id)}>Delete</Button>
                             </td>
 
                         </tr>

@@ -1,11 +1,12 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import Breadcrumb from '../common/breadcrumb';
 import axios from "axios";
-import {Button, Table} from "reactstrap";
+import {Button, FormGroup, Input, Table} from "reactstrap";
 
-const Transfers = () => {
+const Research = () => {
     const [addresses, setAddresses] = useState([]);
     const [transfers, setTransfers] = useState([]);
+    const [address, setAddress] = useState('');
 
 
     useEffect(() => {
@@ -22,8 +23,8 @@ const Transfers = () => {
             });
     }, []);
 
-    const getTransfers = (address) => {
-        axios.get(process.env.REACT_APP_API_URL + "/address/transfers?address=" + address,{
+    const getTransfers = (address_id) => {
+        axios.get(process.env.REACT_APP_API_URL + "/address/transfers?address=" + address_id,{
             headers: {
                 'X-API-KEY': process.env.REACT_APP_API_KEY
             }})
@@ -37,36 +38,29 @@ const Transfers = () => {
     }
 
 
-
+    const handleAddressChange = event => {
+        setAddress(event.target.value);
+    };
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Transfers" />
+            <Breadcrumb parent="Dashboard" title="Research" />
             <div className="container-fluid">
-                <Table striped bordered hover>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nickname</th>
-                        <th>Address</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {addresses.map((address, i) => {
-                        return  <tr key={i}>
-                            <td >{address.id}</td>
-                            <td>{address.nickname}</td>
-                            <td>{address.address_id}</td>
-                            <td>
-                                <Button variant="primary" onClick={() => getTransfers(address.address_id)}>Get Transfers</Button>
-                            </td>
+                <div>
+                    <FormGroup>
+                        <Input type="select" name="select" id="exampleSelect" onChange={handleAddressChange}>
+                            <option placeholder={"Address"}></option>
+                            {addresses.map((address, i) => {
+                                return  <option key={i} value={address.address_id}>{address.nickname}</option>
+                            })
+                            }
+                        </Input>
 
-                        </tr>
-                    })
-                    }
-                    </tbody>
-                </Table>
+                    </FormGroup>
+
+
+                </div>
+                <Button variant="primary" onClick={() => getTransfers(address)}>Get Research</Button>
             </div>
 
             <div className="container-fluid">
@@ -105,4 +99,4 @@ const Transfers = () => {
 };
 
 
-export default Transfers;
+export default Research;

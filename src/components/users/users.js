@@ -65,7 +65,7 @@ const Users = () => {
                 Add
             </Button>
             <div className="container-fluid">
-                <Table striped bordered hover>
+                <Table striped bordered hover size={"sm"}>
                     <thead>
                     <tr>
                         <th>#</th>
@@ -74,7 +74,7 @@ const Users = () => {
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={"text-justify"}>
                     {users.map((user, i) => {
                         return  <tr>
                             <td key={i}>{user.id}</td>

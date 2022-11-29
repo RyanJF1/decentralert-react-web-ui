@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
@@ -19,13 +19,14 @@ import configDB from './data/customizer/config'
 import Notifications from "./components/notifications/notifications";
 import Addresses from "./components/addresses/addresses";
 import Users from "./components/users/users";
-import Transfers from "./components/transfers/transfers";
-import Dashboard from "./components/dashboard/dashboard";
+import Research from "./components/research/research";
 import Login from "./components/login/login";
+import Home from "./components/home/home";
 
 const Root = () => {
 
     useEffect(() => {
+
         const abortController = new AbortController();
         const color = localStorage.getItem('color')
         const layout = localStorage.getItem('layout_version') || configDB.data.color.layout_version
@@ -34,9 +35,12 @@ const Root = () => {
         console.disableYellowBox = true;
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/${color}.css`);
 
+
+
         return function cleanup() {
             abortController.abort();
         }
+
     }, []);
 
     return (
@@ -45,12 +49,12 @@ const Root = () => {
                 <BrowserRouter basename={`/`}>
                         <Switch>
                                 <App>
-                                    <Route path={`${process.env.PUBLIC_URL}/addresses`} component={Addresses} />
-                                    <Route path={`${process.env.PUBLIC_URL}/notifications`} component={Notifications} />
-                                    <Route path={`${process.env.PUBLIC_URL}/users`} component={Users} />
-                                    <Route path={`${process.env.PUBLIC_URL}/transfers`} component={Transfers} />
-                                    <Route path={`${process.env.PUBLIC_URL}/login`} component={Login} />
-                                    <Route path={`${process.env.PUBLIC_URL}/dashboard`} component={Dashboard} />
+                                    <Route path={`/home`} component={Home} />
+                                    <Route path={`/addresses`} component={Addresses} />
+                                    <Route path={`/notifications`} component={Notifications} />
+                                    <Route path={`/users`} component={Users} />
+                                    <Route path={`/research`} component={Research} />
+                                    <Route path={`/login`} component={Login} />
                                 </App>
                         </Switch>
                 </BrowserRouter>
